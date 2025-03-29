@@ -1,21 +1,38 @@
 /**
- * This is the main entrypoint to your Probot app
- * @param {import('probot').Probot} app
+ * VibeStamp Bot — a Probot app to auto-approve high-vibe PRs
+ * Conditions:
+ * - Author must be ChaosTestOps
+ * - Title must include #VibeCoding
+ * - Body must include one of: entropy, seal, 2:17am
  */
+
 export default (app) => {
-  // Your code here
-  app.log.info("Yay, the app was loaded!");
+  app.log.info("Yay, VibeStamp Bot was loaded!");
 
-  app.on("issues.opened", async (context) => {
-    const issueComment = context.issue({
-      body: "Thanks for opening this issue!",
-    });
-    return context.octokit.issues.createComment(issueComment);
+  app.on(['pull_request.opened', 'pull_request.reopened', 'pull_request.synchronize'], async (context) => {
+    const pr = context.payload.pull_request;
+    const author = pr.user.login;
+    const title = pr.title.toLowerCase();
+    const body = (pr.body || '').toLowerCase();
+
+    const vibeKeywords = ['entropy', 'seal', '2:17am'];
+
+    const isChaos = author === 'ChaosTestOps';
+    const hasVibeTitle = title.includes('#vibecoding');
+    const hasVibeBody = vibeKeywords.some(keyword => body.includes(keyword));
+
+    if (isChaos && hasVibeTitle && hasVibeBody) {
+      app.log.info(`Vibe check passed for PR #${pr.number}. Auto-approving.`);
+
+      await context.octokit.pulls.createReview({
+        owner: context.payload.repository.owner.login,
+        repo: context.payload.repository.name,
+        pull_number: pr.number,
+        event: 'APPROVE',
+        body: '🔏 VibeStamp has affixed its mark. Proceed.'
+      });
+    } else {
+      app.log.info(`Vibe check failed for PR #${pr.number}. Manual review required.`);
+    }
   });
-
-  // For more information on building apps:
-  // https://probot.github.io/docs/
-
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
 };
