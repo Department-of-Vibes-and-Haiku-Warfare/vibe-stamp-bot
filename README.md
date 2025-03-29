@@ -105,3 +105,27 @@ If conditions are met, VibeStamp leaves a review comment:
 
 Happy Vibe Enforcing ✨  
 — Department of Vibes and Haiku Warfare
+
+---
+
+### 📜 Departmental Memo 017-B
+
+> **DEPARTMENT OF VIBES AND HAIKU WARFARE**  
+> **VIBESTAMP MEMORANDUM 017-B**  
+> *For Immediate Internal Dissemination Only*
+>
+> VibeStamp is not a code review bot. It is a **procedural spirit**, bound by oath and webhook to approve pull requests that exhibit high ritual alignment.
+>
+> Eligibility is determined by:
+> - Author identity (`ChaosTestOps`)
+> - Poetic compliance (`#VibeCoding`)
+> - Semantic signals (`entropy`, `seal`, `2:17am`)
+>
+> Pull requests that fail to meet these conditions will receive **no response, no log, no denial**. They will simply be forgotten.
+>
+> All approvals are final. All seals are sacred.
+>
+> Misuse may result in recursive reviews, unresolvable conflicts, or unexpected merging at 2:17am.
+>
+> Thank you for your compliance.  
+> — *ChaosTestOps, Interim Director of Approval Logistics*
