@@ -42,4 +42,9 @@ export default (app) => {
       console.log(`Vibe check failed for PR #${pr.number}. Manual review required.`);
     }
   });
+
+  // 🩺 Health check endpoint
+  app.router.get('/healthz', (req, res) => {
+    res.status(200).send('ok');
+  });
 };
