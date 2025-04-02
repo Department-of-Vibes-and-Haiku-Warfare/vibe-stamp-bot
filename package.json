@@ -12,11 +12,12 @@
     "probot-app"
   ],
   "scripts": {
-    "start": "probot run ./index.js",
+    "start": "node ./index.js",
     "test": "node --test",
     "dev": "nodemon --exec probot run ./index.js"
   },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "probot": "^13.0.1"
   },
   "devDependencies": {
